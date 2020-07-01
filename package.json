@@ -1,0 +1,31 @@
+{
+  "name": "node-red-contrib-crc",
+  "description": "Simple crc32 node for calculating checksum of files",
+  "author": {
+    "name": "Jonas Bernemann",
+    "email": "jonas.bernemann@consense-consulting.de"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "node-red",
+    "crc32",
+    "checksum"
+  ],
+  "bugs": {
+    "url": "https://github.com/NoFr1ends/node-red-contrib-crc/issues"
+  },
+  "homepage": "https://github.com/NoFr1ends/node-red-contrib-crc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NoFr1ends/node-red-contrib-crc.git"
+  },
+  "node-red": {
+    "nodes": {
+      "crc-file": "crc-file.js"
+    }
+  },
+  "dependencies": {
+    "crc": "^3.8.0"
+  }
+}
