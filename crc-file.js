@@ -1,4 +1,4 @@
-const {crc32} = require('crc');
+const {CRC32Stream} = require('crc32-stream');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,19 +19,21 @@ module.exports = function(RED) {
             const filePath = RED.util.evaluateNodeProperty(node.filePath, node.filePathType, node, msg);
             const filename = RED.util.evaluateNodeProperty(node.filename, node.filenameType, node, msg);
 
-            console.log(filePath, filename);
+            const source = fs.createReadStream(path.join(filePath, filename));
+            const checksum = new CRC32Stream();
 
-            fs.readFile(path.join(filePath, filename), (err, buffer) => {
+            checksum.on('end', (err) => {
                 if(err) {
-                    console.log('file read failed');
-                    throw err;
+                    node.error(err, msg);
+                    return;
                 }
 
-                console.log('calculate crc');
-                msg[node.target] = crc32(buffer).toString(16);
-                console.log('send message');
+                msg[node.target] = checksum.hex();
                 node.send(msg);
-            })
+            });
+
+            source.pipe(checksum);
+            checksum.resume();
         });
     }
 
