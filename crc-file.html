@@ -9,6 +9,8 @@
             filename: {value: ''},
             filenameType: {value: 'str'},
             target: {value: 'crc'},
+            frontBytes: {value: 0},
+            backBytes: {value: 0},
         },
         inputs:1,
         outputs:1,
@@ -58,6 +60,16 @@
     <div class="form-row">
         <label for="node-input-target"><i class="fa fa-edit"></i> Target Field</label>
         <input type="text" id="node-input-target">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-frontBytes"><i class="fa fa-edit"></i> Bytes from start</label>
+        <input type="number" id="node-input-frontBytes">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-backBytes"><i class="fa fa-edit"></i> Bytes from end</label>
+        <input type="number" id="node-input-backBytes">
     </div>
 </script>
 
